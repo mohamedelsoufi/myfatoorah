@@ -24,10 +24,16 @@ class FatoorahController extends Controller
             "Language" => 'en',
         ];
       return  $this->service->sendPayment($data);
+      // you must had table transaction , save invoiceId and user id from auth
     }
 
     public function callBack(Request $request){
-        dd($request);
-        return $request->paymentId;
+        $payment_id = $request->paymentId;
+        $data = [];
+        $data['Key'] = $payment_id;
+        $data['KeyType'] = 'paymentId';
+        return $response =$this->service->getPaymentstatus($data);
+        // you can get data an update table transaction from $response->data->invoiceId where = invoiceId
+        // in transaction table
     }
 }

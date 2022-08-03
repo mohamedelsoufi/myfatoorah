@@ -48,4 +48,14 @@ class FatoorahService
         return $response = $this->buildRequest('v2/SendPayment','POST',$data);
     }
 
+    public function transactionCallback($request){
+        return $data = $request->all();
+    }
+
+    public function getPaymentstatus($data)
+    {
+        return $response = $this->buildRequest('v2/getPaymentStatus','POST',$data);
+    }
+
+
 }
